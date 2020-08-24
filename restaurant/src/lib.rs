@@ -1,48 +1,35 @@
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
-
-        fn seat_at_table() {}
+/*
+我们定义了一个公有结构体 back_of_house:Breakfast，其中有一个公有字段 toast 和私有字段 seasonal_fruit。
+这个例子模拟的情况是，在一家餐馆中，顾客可以选择随餐附赠的面包类型，
+但是厨师会根据季节和库存情况来决定随餐搭配的水果。餐馆可用的水果变化是很快的，所以顾客不能选择水果，
+甚至无法看到他们将会得到什么水果。
+ */
+mod back_of_house {
+    pub struct Breakfast {
+        pub toast: String,
+        seasonal_fruit: String,
     }
 
-    mod serving {
-        fn take_order() {}
-
-        fn server_order() {}
-
-        fn take_payment() {}
+    impl Breakfast {
+        pub fn summer(toast: &str) -> Breakfast {
+            Breakfast {
+                toast: String::from(toast),
+                seasonal_fruit: String::from("peaches"),
+            }
+        }
     }
 }
 
 pub fn eat_at_restaurant() {
-    // Absolute path
-    crate::front_of_house::hosting::add_to_waitlist();
+    // Order a breakfast in the summer with Rye toast
+    let mut meal = back_of_house::Breakfast::summer("Rye");
+    // Change our mind about what bread we'd like
+    meal.toast = String::from("Wheat");
+    println!("I'd like {} toast please", meal.toast);
 
-    // Relative path
-    front_of_house::hosting::add_to_waitlist();
-}
-
-
-fn serve_order() {}
-
-mod back_of_house {
-    fn fix_incorrect_order() {
-        cook_order();
-        // 指定的 super 起始的 server_order 路径，来调用 server_order 函数
-        super::serve_order();
-    }
-
-    fn cook_order() {}
-}
-
-
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
+    // The next line won't compile if we uncomment it; we're not allowed
+    // to see or modify the seasonal fruit that comes with the meal
+    // meal.seasonal_fruit = String::from("blueberries");
 }
 
 /*
