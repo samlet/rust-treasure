@@ -1,7 +1,5 @@
 [package]
-name = "minigrep"
-description="minigrep example"
-license = "MIT"
+name = "add-one"
 version = "0.1.0"
 authors = ["Samlet Wu <xiaofei.wu@gmail.com>"]
 edition = "2018"
