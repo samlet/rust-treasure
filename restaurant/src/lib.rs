@@ -1,3 +1,7 @@
+//! # Restaurant
+//!
+//! `restaurant` 是一个rust示例合集
+
 mod cacher;
 pub mod adder;
 mod guess;
