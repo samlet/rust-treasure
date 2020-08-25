@@ -7,6 +7,7 @@ use minigrep;
 
 // $ cargo run test poem.txt
 // $ cargo run frog poem.txt
+// $ CASE_INSENSITIVE=1 cargo run to poem.txt
 fn main() {
     let args: Vec<String> = env::args().collect();
     let config = minigrep::Config::new(&args).unwrap_or_else(|err| {
