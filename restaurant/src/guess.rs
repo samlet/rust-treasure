@@ -18,6 +18,7 @@ impl Guess {
 mod tests {
     use super::*;
 
+    // 使用 should_panic 检查 panic
     #[test]
     #[should_panic]
     fn greater_than_100() {
