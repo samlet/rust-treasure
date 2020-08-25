@@ -1,3 +1,4 @@
+mod cacher;
 pub mod adder;
 mod guess;
 mod front_of_house;
