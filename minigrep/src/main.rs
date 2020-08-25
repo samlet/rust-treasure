@@ -1,11 +1,12 @@
 use std::env;
+use std::error::Error;
 use std::fs;
 use std::process;
-use std::error::Error;
 
 use minigrep;
 
 // $ cargo run test poem.txt
+// $ cargo run frog poem.txt
 fn main() {
     let args: Vec<String> = env::args().collect();
     let config = minigrep::Config::new(&args).unwrap_or_else(|err| {

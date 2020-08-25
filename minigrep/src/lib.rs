@@ -4,7 +4,9 @@ use std::fs;
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.filename)?;
 
-    println!("With text:\n{}", contents);
+    for line in search(&config.query, &contents) {
+        println!("{}", line);
+    }
 
     Ok(())
 }
@@ -27,8 +29,18 @@ impl Config {
     }
 }
 
+// search 返回的数据将与 search 函数中的参数 contents 的数据存在的一样久
+// 如果尝试不用生命周期编译的话，我们将得到如下错误: ^ expected lifetime
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    vec![]
+    let mut results = Vec::new();
+
+    for line in contents.lines() {
+        if line.contains(query) {
+            results.push(line);
+        }
+    }
+
+    results
 }
 
 #[cfg(test)]
