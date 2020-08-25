@@ -1,5 +1,7 @@
 [package]
 name = "restaurant"
+description="rust examples"
+license = "MIT"
 version = "0.1.0"
 authors = ["Samlet Wu <xiaofei.wu@gmail.com>"]
 edition = "2018"
