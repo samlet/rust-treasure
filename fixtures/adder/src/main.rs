@@ -1,3 +1,5 @@
+use rand;
+
 use add_one;
 
 // $ cargo run -p adder
