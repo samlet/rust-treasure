@@ -62,8 +62,10 @@ fn generate_workout(intensity: u32, random_number: u32) {
 mod tests {
     use super::*;
 
-    // $ cargo test add
+    // $ cargo test -- --ignored
+    // $ cargo test slow -- --ignored
     # [test]
+    # [ignore]
     fn slow_cache() {
         let simulated_user_specified_value = 10;
         let simulated_random_number = 7;
@@ -73,4 +75,15 @@ mod tests {
             simulated_random_number
         );
     }
+
+    #[test]
+    fn call_with_different_values() {
+        let mut c = Cacher::new(|a| a);
+
+        let v1 = c.value(1);
+        let v2 = c.value(2);
+
+        assert_eq!(v2, 2);
+    }
 }
+
