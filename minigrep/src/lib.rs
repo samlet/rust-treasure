@@ -48,15 +48,20 @@ impl Config {
 // search 返回的数据将与 search 函数中的参数 contents 的数据存在的一样久
 // 如果尝试不用生命周期编译的话，我们将得到如下错误: ^ expected lifetime
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
+    // let mut results = Vec::new();
+    //
+    // for line in contents.lines() {
+    //     if line.contains(query) {
+    //         results.push(line);
+    //     }
+    // }
+    //
+    // results
 
-    for line in contents.lines() {
-        if line.contains(query) {
-            results.push(line);
-        }
-    }
-
-    results
+    // 使用迭代器适配器来使代码更简明
+    contents.lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
