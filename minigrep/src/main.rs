@@ -8,6 +8,7 @@ use minigrep;
 // $ cargo run test poem.txt
 // $ cargo run frog poem.txt
 // $ CASE_INSENSITIVE=1 cargo run to poem.txt
+// $ cargo run to poem.txt > output.txt
 fn main() {
     let args: Vec<String> = env::args().collect();
     let config = minigrep::Config::new(&args).unwrap_or_else(|err| {
@@ -19,8 +20,8 @@ fn main() {
     println!("In file {}", config.filename);
 
     if let Err(e) = minigrep::run(config) {
-        println!("Application error: {}", e);
-
+        // println!("Application error: {}", e);
+        eprintln!("Application error: {}", e);
         process::exit(1);
     }
 }
