@@ -6,6 +6,7 @@ mod cacher;
 pub mod adder;
 mod guess;
 mod front_of_house;
+mod messenger;
 
 pub use crate::front_of_house::hosting;
 
